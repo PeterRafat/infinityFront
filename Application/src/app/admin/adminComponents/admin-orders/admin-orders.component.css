@@ -1,0 +1,11 @@
+/* Add this to your component's CSS file */
+.alert-info {
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+    border: 1px solid #bce8f1;
+    background-color: #d9edf7;
+    color: #31708f;
+    border-radius: 4px;
+  }
+  

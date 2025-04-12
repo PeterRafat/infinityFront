@@ -1,0 +1,35 @@
+<div class="card shadow-lg border-0">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover table-striped align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Photo</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (product of products; track $index) {
+                    <tr>
+                        <td><img [src]="product.photos[0]" alt="" width="100px" ></td>
+                        <td>{{ product.name}}</td>
+                        <td><span class="fw-bold text-success">{{ product.price }} EGP</span></td>
+                        <td class="text-center">
+                            <div class="btn-group gap-1">
+                                <button class="btn btn-danger btn-sm rounded" (click)="deleteProduct(product.id)">
+                                    <i class="bi bi-trash"></i> Delete
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+            <div *ngIf="products.length === 0" class="alert alert-warning text-center">
+                <i class="bi bi-exclamation-triangle-fill"></i> No Products have been placed yet.
+            </div>
+        </div>
+    </div>
+</div>

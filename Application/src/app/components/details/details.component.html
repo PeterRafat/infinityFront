@@ -1,0 +1,29 @@
+<div class="container mt-5">
+    <div class="row">
+        <!-- Product Images -->
+        <div class="col-md-6 mb-4 text-center">
+            <!-- Main Image -->
+            <img [src]="data.photos[0]" alt="Product" class="img-fluid rounded mb-3 product-image main" id="mainImage">
+
+            <!-- Thumbnails -->
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+                <img *ngFor="let photo of data.photos.slice(0, 4)" [src]="photo" alt="Thumbnail"
+                    class="thumbnail rounded" [ngClass]="{'active': photo === data.photos[0]}"
+                    (click)="changeMainImage(photo)">
+            </div>
+        </div>
+
+        <!-- Product Details -->
+        <div class="col-md-6">
+            <h2 class="mb-3">{{ getProductName(data) }}</h2>
+            <div class="mb-3">
+                <span class="h4 me-2">{{ data.price }} EGP</span>
+            </div>
+            <!-- description -->
+            <p class="mb-4">{{ data.description }}</p>
+            <button class="btn btn-lg mb-3 me-2" [routerLink]="['/order', id]">
+                <i class="bi bi-cart-plus"></i> {{'details.orderbtn'|translate}}
+            </button>
+        </div>
+    </div>
+</div>

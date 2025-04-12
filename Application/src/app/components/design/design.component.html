@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ 'design.title' | translate }}</title>
+  <!-- Bootstrap CSS -->
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+  <!-- Font Awesome for Icons -->
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" /> -->
+</head>
+<body>
+  <div class="container-fluid py-5 bg-light">
+    <!-- Header Section -->
+    <div class="text-center mb-5">
+      <h1 class="display-4 fw-bold text-dark">{{ 'design.title' | translate }}</h1>
+      <p class="lead text-muted">{{ 'design.description' | translate }}</p>
+      <hr class="w-25 mx-auto border-dark-subtle">
+    </div>
+
+    <div class="row g-4">
+      <!-- Left Sidebar: Design Controls -->
+      <div class="col-lg-3 col-md-4">
+        <div class="card shadow-sm p-4 bg-white rounded">
+          <h5 class="card-title mb-4 text-center text-primary">{{ 'design.customize' | translate }}</h5>
+
+          <!-- Shirt Type Selection -->
+          <div class="mb-4">
+            <label class="form-label fw-semibold">{{ 'design.shirtType' | translate }}</label>
+            <div class="d-flex gap-2 justify-content-center">
+              <button class="btn btn-outline-primary flex-fill" [class.active]="currentShirtType === ShirtType.TShirt" (click)="switchShirtType(ShirtType.TShirt)">
+                <i class="fas fa-tshirt me-2"></i>{{ 'design.tshirt' | translate }}
+              </button>
+              <button class="btn btn-outline-primary flex-fill" [class.active]="currentShirtType === ShirtType.Hoodie" (click)="switchShirtType(ShirtType.Hoodie)">
+                <i class="fas fa-hoodie me-2"></i>{{ 'design.hoodie' | translate }}
+              </button>
+            </div>
+          </div>
+
+          <!-- Shirt Color Picker -->
+          <div class="mb-4">
+            <label class="form-label fw-semibold">{{ 'design.shirtColor' | translate }}</label>
+            <input type="color" class="form-control form-control-color w-100" [(ngModel)]="designs[currentShirtType].color" (change)="updateShirtColor(designs[currentShirtType].color)" />
+          </div>
+
+          <!-- Text Input -->
+          <div class="mb-4">
+            <label class="form-label fw-semibold">{{ 'design.text' | translate }}</label>
+            <input type="text" class="form-control" [(ngModel)]="textInput" placeholder="{{ 'design.textPlaceholder' | translate }}" />
+          </div>
+
+          <!-- Text Color Picker -->
+          <div class="mb-4">
+            <label class="form-label fw-semibold">{{ 'design.textColor' | translate }}</label>
+            <input type="color" class="form-control form-control-color w-100" [(ngModel)]="textColor" />
+          </div>
+
+          <!-- Font Size Input -->
+          <div class="mb-4">
+            <label class="form-label fw-semibold">{{ 'design.fontSize' | translate }}</label>
+            <input type="number" class="form-control" [(ngModel)]="fontSize" min="10" max="100" />
+          </div>
+
+          <!-- Font Family Selector -->
+          <div class="mb-4">
+            <label class="form-label fw-semibold">{{ 'design.fontFamily' | translate }}</label>
+            <select class="form-select" [(ngModel)]="fontFamily">
+              <option value="Arial">Arial</option>
+              <option value="Times New Roman">Times New Roman</option>
+              <option value="Courier New">Courier New</option>
+              <option value="Verdana">Verdana</option>
+              <option value="Helvetica">Helvetica</option>
+              <option value="Georgia">Georgia</option>
+            </select>
+          </div>
+
+          <!-- Icon Selection -->
+          <div class="mb-4">
+            <label class="form-label fw-semibold">{{ 'design.addIcon' | translate }}</label>
+            <div class="icon-grid">
+              <div *ngFor="let icon of availableIcons" class="icon-card" (click)="selectIcon(icon)">
+                <i class="fa {{icon}} fa-2x"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Icon Color Picker -->
+          <div class="mb-4">
+            <label class="form-label fw-semibold">{{ 'design.iconColor' | translate }}</label>
+            <input type="color" class="form-control form-control-color w-100" [(ngModel)]="iconColor" />
+          </div>
+
+          <!-- Logo Upload -->
+          <div class="mb-4">
+            <label class="form-label fw-semibold">{{ 'design.addLogo' | translate }}</label>
+            <input type="file" class="form-control" (change)="onFileSelect($event)" accept="image/*" />
+          </div>
+
+          <!-- Delete Logo Button -->
+          <div class="mb-4">
+            <button class="btn btn-danger w-100" (click)="deleteLogo()">
+              <i class="fas fa-trash-alt me-2"></i>{{ 'design.deleteLogo' | translate }}
+            </button>
+            <p class="text-muted small mt-2">{{ 'design.deleteLogoDescription' | translate }}</p>
+          </div>
+
+          <!-- Save Design Button -->
+          <div class="mb-4">
+            <button class="btn btn-primary w-100" (click)="saveDesign()">
+              <i class="fas fa-download me-2"></i>{{ 'design.saveDesign' | translate }}
+            </button>
+            <p class="text-muted small mt-2">{{ 'design.saveDesignDescription' | translate }}</p>
+          </div>
+
+          <!-- Order Button -->
+          <button class="btn btn-success w-100" routerLink="/customeOrder">
+            <i class="fas fa-cart-plus me-2"></i>{{ 'design.order' | translate }}
+          </button>
+        </div>
+      </div>
+
+      <!-- Main Canvas Area -->
+      <div class="col-lg-6 col-md-8">
+        <div class="card shadow-sm p-4 bg-white rounded">
+          <div class="stage-container mb-4">
+            <div #frontStageContainer></div>
+            <div #backStageContainer style="display: none;"></div>
+            <div #rightSleeveStageContainer style="display: none;"></div>
+            <div #leftSleeveStageContainer style="display: none;"></div>
+          </div>
+
+          <!-- View Switch Buttons -->
+          <div class="d-flex flex-wrap gap-2 justify-content-center">
+            <button class="btn btn-outline-secondary view-btn" [class.active]="currentView === 'front'" (click)="switchView('front')">
+              <img [src]="currentShirtType === ShirtType.TShirt ? '/shirts/front.png' : '/hoodies/front.png'" alt="Front" class="view-img" />
+              <span>{{ 'design.front' | translate }}</span>
+            </button>
+            <button class="btn btn-outline-secondary view-btn" [class.active]="currentView === 'back'" (click)="switchView('back')">
+              <img [src]="currentShirtType === ShirtType.TShirt ? '/shirts/back.png' : '/hoodies/back.png'" alt="Back" class="view-img" />
+              <span>{{ 'design.back' | translate }}</span>
+            </button>
+            <button class="btn btn-outline-secondary view-btn" [class.active]="currentView === 'right'" (click)="switchView('right')">
+              <img [src]="currentShirtType === ShirtType.TShirt ? '/shirts/right.png' : '/hoodies/right.png'" alt="Right Sleeve" class="view-img" />
+              <span>{{ 'design.rightSleeve' | translate }}</span>
+            </button>
+            <button class="btn btn-outline-secondary view-btn" [class.active]="currentView === 'left'" (click)="switchView('left')">
+              <img [src]="currentShirtType === ShirtType.TShirt ? '/shirts/left.png' : '/hoodies/left.png'" alt="Left Sleeve" class="view-img" />
+              <span>{{ 'design.leftSleeve' | translate }}</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Sidebar: Price Calculator -->
+      <div class="col-lg-3 col-md-4">
+        <div class="card shadow-sm p-4 bg-white rounded">
+          <h5 class="card-title mb-4 text-center text-primary">{{ 'design.priceSummary' | translate }}</h5>
+          <div class="price-row">
+            <span class="price-label">{{ currentShirtType === ShirtType.TShirt ? 'T-shirt' : 'Hoodie' }}:</span>
+            <span class="price-value">{{ designs[currentShirtType].priceBreakdown.base }} EGP</span>
+          </div>
+          <div class="price-row" *ngIf="designs[currentShirtType].priceBreakdown.text > 0">
+            <span class="price-label">{{ 'design.text' | translate }}:</span>
+            <span class="price-value">+{{ designs[currentShirtType].priceBreakdown.text }} EGP</span>
+          </div>
+          <div class="price-row" *ngIf="designs[currentShirtType].priceBreakdown.logo > 0">
+            <span class="price-label">{{ 'design.logo' | translate }}:</span>
+            <span class="price-value">+{{ designs[currentShirtType].priceBreakdown.logo }} EGP</span>
+          </div>
+          <div class="price-row" *ngIf="designs[currentShirtType].priceBreakdown.colorChange > 0">
+            <span class="price-label">{{ 'design.colorChange' | translate }}:</span>
+            <span class="price-value">+{{ designs[currentShirtType].priceBreakdown.colorChange }} EGP</span>
+          </div>
+          <hr class="my-3">
+          <div class="price-total">
+            <span class="price-label fw-bold">{{ 'design.total' | translate }}:</span>
+            <span class="price-value fw-bold text-success">{{ designs[currentShirtType].priceBreakdown.total }} EGP</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS (for responsive behavior) -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->
+</body>
+</html>

@@ -1,0 +1,78 @@
+/* Navbar Background */
+.navbar {
+    background-color: white; /* White background */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  }
+  
+  /* Navbar Links */
+  .nav-link {
+    color: black !important; /* Black text */
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+  
+  .nav-link:hover {
+    color: #333 !important; /* Darker black on hover */
+    transform: translateY(-2px);
+  }
+  
+  /* Active Link Styling */
+  .nav-link.active {
+    color: #333 !important; /* Darker black for active link */
+    border-bottom: 2px solid black; /* Black underline for active link */
+  }
+  
+  /* Language Switcher Styling */
+  .navbar-nav.mr-auto .nav-link {
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.1); /* Light black background */
+    margin-left: 0.5rem;
+  }
+  
+  .navbar-nav.mr-auto .nav-link:hover {
+    background: rgba(0, 0, 0, 0.2); /* Darker black background on hover */
+  }
+  
+  /* Logo Animation */
+  .navbar-brand img {
+    transition: transform 0.3s ease;
+  }
+  
+  .navbar-brand img:hover {
+    transform: scale(1.1); /* Slight zoom on hover */
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 992px) {
+    .navbar-collapse {
+      background: white; /* White background for mobile */
+      padding: 1rem;
+      border-radius: 10px;
+    }
+  
+    .navbar-nav .nav-item {
+      margin-bottom: 0.5rem;
+    }
+  }
+  
+  /* Search Bar Styling */
+  .btn-outline-dark {
+    border-color: black; /* Black border for search button */
+    color: black; /* Black text */
+  }
+  
+  .btn-outline-dark:hover {
+    background-color: black; /* Black background on hover */
+    color: white; /* White text on hover */
+  }
+  
+  /* Shopping Cart Button */
+  .btn-dark {
+    background-color: black; /* Black background */
+    color: white; /* White text */
+  }
+  
+  .btn-dark:hover {
+    background-color: #333; /* Darker black on hover */
+  }

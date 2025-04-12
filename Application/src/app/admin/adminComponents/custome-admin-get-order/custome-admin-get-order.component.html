@@ -1,0 +1,139 @@
+<div class="card shadow-lg border-0">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover table-striped align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Name</th>
+                        <th class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (order of orders; track $index) {
+                    @if (order.id !== 0) {
+                    <tr>
+                        <td>{{ order.name }}</td>
+                        <td class="text-center">
+                            <div class="btn-group gap-1">
+                                <button class="btn btn-danger btn-sm rounded" (click)="deleteOrder(order.id)">
+                                    <i class="bi bi-trash"></i> Delete
+                                </button>
+                                <button type="button" class="btn btn-primary btn-sm rounded" data-bs-toggle="modal"
+                                    data-bs-target="#orderDetailsModal" (click)="getOrderDetails(order)">
+                                    <i class="bi bi-eye"></i> View
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    }
+                    }
+                </tbody>
+            </table>
+            @if (orders.length === 1 && orders[0].id === 0) {
+            <div class="alert alert-warning text-center">
+                <i class="bi bi-exclamation-triangle-fill"></i> No custom orders have been placed yet.
+            </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!-- Order Details Modal -->
+<div class="modal fade" id="orderDetailsModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="orderDetailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content shadow-lg border-0">
+            <div class="modal-header bg-primary text-white d-flex justify-content-between align-items-center">
+                <h5 class="modal-title m-0" id="orderDetailsModalLabel">
+                    {{ selectedOrder.id !== 0 ? selectedOrder.name : 'Order Details' }}
+                </h5>
+              
+            </div>
+            <div class="modal-body">
+                @if (selectedOrder.id !== 0) {
+                <div class="row mb-3">
+                    @for (photo of selectedOrder.photos; track $index; let i = $index) {
+                    <div class="col-md-3 mb-2 position-relative">
+                        <img [src]="photo" class="rounded img-fluid shadow-sm cursor-pointer photo-thumbnail"
+                            style="height: 150px; width: 100%; object-fit: cover;" (click)="showPhoto(i)">
+                        <button class="btn btn-sm btn-outline-success position-absolute bottom-0 end-0 m-2"
+                            (click)="downloadPhoto(photo, i); $event.stopPropagation()">
+                            <i class="bi bi-download"></i>
+                        </button>
+                    </div>
+                    }
+                </div>
+
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <th class="bg-light" style="width: 30%">Name</th>
+                            <td>{{ selectedOrder.name }}</td>
+                        </tr>
+                        <tr>
+                            <th class="bg-light" style="width: 30%">Email</th>
+                            <td>{{ selectedOrder.email }}</td>
+                        </tr>
+                        <tr>
+                            <th class="bg-light">Size</th>
+                            <td>{{ selectedOrder.size }}</td>
+                        </tr>
+                        <tr>
+                            <th class="bg-light">Address</th>
+                            <td>{{ selectedOrder.address }}</td>
+                        </tr>
+                        <tr>
+                            <th class="bg-light">Notes</th>
+                            <td>{{ selectedOrder.notes || 'No notes provided' }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                } @else {
+                <div class="text-center py-4">
+                    <i class="bi bi-exclamation-circle fs-1 text-warning"></i>
+                    <p class="mt-3">No order details available</p>
+                </div>
+                }
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Photo View Modal -->
+<div class="modal fade" id="photoModal" tabindex="-1" aria-hidden="true" [class.show]="showPhotoModal"
+    [style.display]="showPhotoModal ? 'block' : 'none'">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title">Order Photo ({{ selectedPhotoIndex + 1 }}/{{ selectedOrder.photos.length }})
+                </h5>
+                <button type="button" class="btn-close btn-close-white" (click)="closePhotoModal()"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <div class="position-relative">
+                    <img [src]="selectedOrder.photos[selectedPhotoIndex]" class="img-fluid" style="max-height: 70vh;">
+                    @if (selectedOrder.photos.length > 1) {
+                    <button class="btn btn-primary position-absolute top-50 start-0 translate-middle-y"
+                        (click)="navigatePhoto('prev')">
+                        <i class="bi bi-chevron-left"></i>
+                    </button>
+                    <button class="btn btn-primary position-absolute top-50 end-0 translate-middle-y"
+                        (click)="navigatePhoto('next')">
+                        <i class="bi bi-chevron-right"></i>
+                    </button>
+                    }
+                </div>
+                <div class="mt-3">
+                    <button class="btn btn-success me-2"
+                        (click)="downloadPhoto(selectedOrder.photos[selectedPhotoIndex], selectedPhotoIndex)">
+                        <i class="bi bi-download"></i> Download This Photo
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

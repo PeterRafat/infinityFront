@@ -1,0 +1,13 @@
+<ng-container *ngIf="isAdminPage(); else userNavbar">
+    <app-admin-navbar></app-admin-navbar>
+</ng-container>
+<ng-template #userNavbar>
+    <app-navbar></app-navbar>
+</ng-template>
+<router-outlet></router-outlet>
+<!-- Floating WhatsApp Icon -->
+<a href="https://wa.me/201287836186" target="_blank" class="whatsapp-float">
+    <i class="bi bi-whatsapp whatsapp-icon"></i> 
+  </a>
+  
+<app-footer *ngIf="!isAdminPage()"></app-footer>

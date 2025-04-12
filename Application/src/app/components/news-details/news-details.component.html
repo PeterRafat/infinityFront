@@ -1,0 +1,28 @@
+<div class="news-details-container">
+    @if (loading) {
+      <div class="loading-spinner">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    } @else if (newsItem) {
+      <div class="news-header">
+        <h1 class="news-title text-center">{{newsItem.title}}</h1>
+        <div class="news-meta text-center">
+          <!-- <span class="news-date">Last updated: {{newsItem.lastUpdate | date}}</span> -->
+        </div>
+      </div>
+  
+      <div class="news-content-wrapper">
+        <div class="news-image-container">
+          <img [src]="newsItem.photo" [alt]="newsItem.title" class="news-featured-image">
+        </div>
+        <div class="news-text-content">
+          <p class="news-content">{{newsItem.content}}</p>
+          <a routerLink="/news" class="btn btn-outline-primary back-button">Back to News</a>
+        </div>
+      </div>
+    } @else if (error) {
+      <div class="error-message alert alert-danger">{{error}}</div>
+    }
+  </div>

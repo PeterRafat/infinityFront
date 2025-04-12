@@ -1,0 +1,13 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.d-flex.flex-column {
+    min-height: 100vh; /* يجعل الصفحة تأخذ طول النافذة بالكامل */
+}
+
+main {
+    flex: 1; /* يجبر المحتوى الرئيسي على التمدد لملء المساحة */
+}

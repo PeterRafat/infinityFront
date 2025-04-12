@@ -1,0 +1,145 @@
+{
+  "userNavbar": {
+    "home": "Home",
+    "Products": "Products",
+    "Category": "Categories",
+    "Design": "Design T-shirt",
+    "AboutUs": "About Us",
+    "ContactUs": "Contact Us",
+    "News": "News"
+  },
+  "hero": {
+    "Headline1": "Welcome to Our Store",
+    "Subheading1": "Discover the latest trends",
+    "Headline2": "Special Offers",
+    "Subheading2": "Get up to 50% off"
+  },
+  "general": {
+    "Previous": "Previous",
+    "Next": "Next",
+    "Price": "Price",
+    "PriceSign": "EGP"
+  },
+  "buttons": {
+    "ShopNow": "Shop Now",
+    "Explore": "Explore",
+    "ViewAllCategories": "View All Categories",
+    "GoToAllProducts": "Go to All Products",
+    "Details": "Details",
+    "Design": "Design",
+    "ContactUs": "Contact Us"
+  },
+  "features": {
+    "Shipping": "Free Shipping",
+    "ShippingDesc": "On all orders over $50",
+    "Quality": "Quality Guarantee",
+    "QualityDesc": "High-quality products",
+    "Returns": "Easy Returns",
+    "ReturnsDesc": "30-day return policy",
+    "Support": "24/7 Support",
+    "SupportDesc": "Dedicated support"
+  },
+  "home": {
+    "CategoryTitle": "Shop by Category",
+    "ProductTitle": "Featured Products",
+    "DesignTitle": "Custom Design",
+    "DesignSubtitle": "Create Your Own Style",
+    "DesignSubtitle2": "Unique & Personalized",
+    "DesignDescription": "Design your own custom t-shirts with our easy-to-use design tool.",
+    "ContactTitle": "Contact Us",
+    "ContactDescription": "We're here to help! If you have any questions or need support, feel free to reach out to us. Our team is ready to assist you and will respond to your inquiries as soon as possible."
+  },
+  "about": {
+    "whyChooseUs": "Why Choose Us?",
+    "description": "With years of experience and deep industry knowledge, we have a proven track record of success and are constantly pushing ourselves to stay ahead of the curve.",
+    "evolutionProcedure": "Our evolution procedure is super intelligent.",
+    "deliverServices": "We deliver services beyond expectations.",
+    "hireUs": "Let's hire us to reach your objectives.",
+    "connectNow": "Connect Now"
+  },
+  "contactus": {
+    "CONTACT_US": "Contact us",
+    "CONTACT_DESC": "Our team is available to provide prompt and helpful responses to all inquiries. You can reach us via phone, email, or by filling out the contact form below.",
+    "GET_IN_TOUCH": "Get in touch to buy your t-shirt",
+    "Contact_description": "We're always on the lookout to work with new clients. If you're interested in working with us, please get in touch in one of the following ways.",
+    "ADDRESS": "Address",
+    "PHONE": "Phone",
+    "EMAIL": "E-Mail",
+    "OPENING_HOURS": "Opening Hours",
+    "MON_FRI": "Mon - Fri",
+    "SAT_SUN": "Sat - Sun",
+    "TIME_9_5": "9am - 5pm",
+    "TIME_9_2": "9am - 2pm"
+  },
+  "products": {
+    "New": "New",
+    "chooseTypeOfPlace": "Choose Type of Place",
+    "all": "All",
+    "price": "Price",
+    "viewDetails": "View Details"
+  },
+  "categories": {
+    "chooseTypeOfPlace": "Choose Type of Place"
+  },
+  "details": {
+    "orderbtn": "Order"
+  },
+  "contact": {
+    "Address": "123 Main St, City, Country",
+    "Phone": "+123 456 7890",
+    "Email": "support@example.com"
+  },
+  "design": {
+    "title": "Design Your Custom Shirt",
+    "description": "Create a unique shirt with your own text, icons, and logos. Perfect for personal use or gifting!",
+    "customize": "Customize Your Shirt",
+    "shirtType": "Shirt Type",
+    "tshirt": "T-Shirt",
+    "hoodie": "Hoodie",
+    "front": "Front",
+    "back": "Back",
+    "rightSleeve": "Right Sleeve",
+    "leftSleeve": "Left Sleeve",
+    "shirtColor": "Shirt Color",
+    "text": "Text",
+    "textPlaceholder": "Enter your text here",
+    "textColor": "Text Color",
+    "fontSize": "Font Size",
+    "fontFamily": "Font Family",
+    "addIcon": "Add Icon",
+    "iconColor": "Icon Color",
+    "addLogo": "Upload Logo",
+    "deleteLogo": "Delete Logo",
+    "deleteLogoDescription": "Remove all logos and icons from the current view.",
+    "saveDesign": "Save Design",
+    "saveDesignDescription": "Download your design as an image.",
+    "order": "Order",
+    "priceSummary": "Price Summary",
+    "logo": "Logo/Icon",
+    "colorChange": "Color Change",
+    "total": "Total"
+  },
+  "CUSTOM_ORDER": {
+    "TITLE": "Custom Order",
+    "DESCRIPTION": "Our team is available to provide prompt and helpful responses to all inquiries. You can reach us via phone, email, or by filling out the contact form below.",
+    "FORM": {
+      "NAME": "Name",
+      "EMAIL": "Email",
+      "PHONE": "Phone Number",
+      "SIZE": "Size",
+      "QUANTITY": "Quantity",
+      "ADDRESS": "Address",
+      "NOTES": "Message",
+      "PHOTOS": "Upload Photos For Custom Design",
+      "SUBMIT_BUTTON": "Order Now"
+    },
+    "ERRORS": {
+      "REQUIRED": "This field is required.",
+      "INVALID_EMAIL": "Please enter a valid email address.",
+      "INVALID_FILE_TYPE": "Please upload only image files."
+    },
+    "SUCCESS": {
+      "ORDER_ADDED": "Order Added Successfully"
+    }
+  }
+}

@@ -1,0 +1,54 @@
+/* add-product.component.css */
+.upload-area {
+    min-height: 150px;
+    border: 2px dashed #dee2e6 !important;
+    background-color: #f8f9fa;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+  
+  .upload-area:hover, .upload-area.dragover {
+    border-color: #0d6efd !important;
+    background-color: rgba(13, 110, 253, 0.05);
+  }
+  
+  .img-thumbnail {
+    height: 150px;
+    object-fit: cover;
+  }
+  .inputSize{
+    width: 40%;
+    text-align: center;
+  }
+  button {
+    width: 100%;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.815);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    margin-bottom: 1rem;
+    color:white;
+  }
+  
+  button:hover {
+    background-color: rgba(0, 0, 0, 0.233);
+    color: black;
+}
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .row {
+        display: flex;
+        flex-direction: column;
+    }
+    button{
+        width: 50%;
+    }
+}
+@media screen and (max-width: 1024px) {
+  .main{
+    position: relative;
+    left: 3rem;
+  }
+}

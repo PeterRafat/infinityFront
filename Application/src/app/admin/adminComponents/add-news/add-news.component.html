@@ -1,0 +1,134 @@
+<div class="admin-container">
+    <div class="header">
+        <h2>
+            <i class="fas fa-newspaper"></i>
+            {{ showForm ? 'Add News' : 'News List' }}
+        </h2>
+        <button class="btn btn-primary" (click)="toggleView()">
+            <i class="fas fa-{{ showForm ? 'list' : 'plus' }}"></i>
+            {{ showForm ? 'View All News' : 'Add New' }}
+        </button>
+    </div>
+
+    <!-- Add News Form -->
+    <div *ngIf="showForm" class="card form-card">
+        <form [formGroup]="newsForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <!-- Arabic Fields -->
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Arabic Title</label>
+                        <input type="text" formControlName="arabicTitle" class="form-control" dir="rtl">
+                        <div *ngIf="newsForm.get('arabicTitle')?.invalid && newsForm.get('arabicTitle')?.touched"
+                            class="error-message">
+                            Arabic title is required
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Arabic Details</label>
+                        <textarea formControlName="arabicDetails" class="form-control" rows="5" dir="rtl"></textarea>
+                        <div *ngIf="newsForm.get('arabicDetails')?.invalid && newsForm.get('arabicDetails')?.touched"
+                            class="error-message">
+                            Arabic details are required
+                        </div>
+                    </div>
+                </div>
+
+                <!-- English Fields -->
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>English Title</label>
+                        <input type="text" formControlName="englishTitle" class="form-control">
+                        <div *ngIf="newsForm.get('englishTitle')?.invalid && newsForm.get('englishTitle')?.touched"
+                            class="error-message">
+                            English title is required
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>English Details</label>
+                        <textarea formControlName="englishDetails" class="form-control" rows="5"></textarea>
+                        <div *ngIf="newsForm.get('englishDetails')?.invalid && newsForm.get('englishDetails')?.touched"
+                            class="error-message">
+                            English details are required
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Image Upload -->
+            <div class="form-group">
+                <label>News Image</label>
+                <input type="file" id="newsImage" class="form-control" (change)="onImageSelected($event)"
+                    accept="image/*">
+
+                <!-- Image Preview -->
+                <div *ngIf="imagePreview" class="image-preview">
+                    <img [src]="imagePreview" alt="Preview">
+                    <br>
+                    <button type="button" class="btn btn-sm btn-danger mt-2" (click)="removeImage()">
+                        <i class="fas fa-trash"></i> Remove
+                    </button>
+                </div>
+            </div>
+
+            <!-- Form Actions -->
+            <div class="form-actions">
+                <button type="button" class="btn btn-secondary" (click)="resetForm()">
+                    Reset
+                </button>
+                <button type="submit" class="btn btn-primary" [disabled]="isSubmitting">
+                    <span *ngIf="!isSubmitting">Submit</span>
+                    <span *ngIf="isSubmitting">
+                        <span class="spinner-border spinner-border-sm"></span> Saving...
+                    </span>
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- News List -->
+    <div *ngIf="!showForm" class="card list-card">
+        <div *ngIf="isLoading" class="loading-state">
+            <div class="spinner-border text-primary"></div>
+            <p>Loading news...</p>
+        </div>
+
+        <div *ngIf="!isLoading && newsList.length === 0" class="empty-state">
+            <i class="fas fa-newspaper"></i>
+            <h4>No News Found</h4>
+            <p>Start by adding your first news item</p>
+        </div>
+
+        <div *ngIf="!isLoading && newsList.length > 0" class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Arabic Title</th>
+                        <th>English Title</th>
+                        <th>Image</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let news of newsList; let i = index">
+                        <td class="fw-bold">{{ i + 1 }}</td>
+                        <td>{{ news.titleAr }}</td>
+                        <td>{{ news.title }}</td>
+                        <td>
+                            <img *ngIf="news.photo" [src]="news.photo" class="thumbnail">
+                            <span *ngIf="!news.photo">No image</span>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger btn-sm rounded" (click)="deleteNews(news.id)">
+                                <i class="bi bi-trash"></i> Delete
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

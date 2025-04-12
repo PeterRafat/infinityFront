@@ -1,0 +1,56 @@
+{
+    "products":[
+        {
+            "id": 1,
+            "name":"lenovo",
+            "price":"100",
+            "quantity":"2",
+            "catId":"1",
+            "imgUrl":"front.png"
+        },
+        {
+            "id": 2,
+            "name":"peter",
+            "price":"100",
+            "quantity":"2",
+            "description":"car is red",
+            "catId":"1",
+            "imgUrl":"https://piscum.photo/200"
+        },
+        {
+            "id": 1,
+            "name":"lenovo",
+            "price":"100",
+            "quantity":"2",
+            "catId":"1",
+            "imgUrl":"https://piscum.photo/200"
+        },
+        {
+            "id": 1,
+            "name":"lenovo",
+            "price":"100",
+            "quantity":"2",
+            "catId":"1",
+            "imgUrl":"https://piscum.photo/200"
+        },
+        {
+            "id": 1,
+            "name":"lenovo",
+            "price":"100",
+            "quantity":"2",
+            "catId":"1",
+            "imgUrl":"https://piscum.photo/200"
+        }
+    ],
+    "categories":[
+        {
+            "id":"1","name":"Laptops"
+        },
+        {
+            "id":"2","name":"Tablets"
+        },
+        {
+            "id":"3","name":"Mobiles"
+        }
+    ]
+}

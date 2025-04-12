@@ -1,0 +1,100 @@
+/* Base styles */
+.alert-info {
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+    border: 1px solid #bce8f1;
+    background-color: #d9edf7;
+    color: #684dab;
+    border-radius: 4px;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+/* Photo modal styles */
+#photoModal {
+  background-color: rgba(8, 9, 10, 0.825);
+}
+
+#photoModal .modal-dialog {
+  max-width: 90%;
+  margin: 1.75rem auto;
+}
+
+#photoModal .modal-content {
+  background-color: transparent;
+  border: none;
+}
+
+#photoModal .modal-body img {
+  max-width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+  margin: 0 auto;
+  display: block;
+}
+
+/* Thumbnail styles */
+.photo-thumbnail {
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.photo-thumbnail:hover {
+  transform: scale(1.03);
+  z-index: 1;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+/* Navigation buttons */
+#photoModal .btn-primary {
+  z-index: 2;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.8;
+  transition: opacity 0.3s;
+}
+
+#photoModal .btn-primary:hover {
+  opacity: 1;
+}
+
+#photoModal .btn-primary i {
+  font-size: 1.5rem;
+}
+
+/* Download button styles */
+.btn-download-all {
+  transition: all 0.3s ease;
+}
+
+.btn-download-all:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-download-all:disabled {
+  opacity: 0.7;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  #photoModal .modal-dialog {
+    max-width: 95%;
+  }
+  
+  #photoModal .btn-primary {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .photo-thumbnail {
+    height: 120px !important;
+  }
+}

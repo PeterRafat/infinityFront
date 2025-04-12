@@ -1,0 +1,58 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <div class="container-fluid">
+      <!-- Logo -->
+      <a class="navbar-brand" href="#">
+        <img src="/shirts/logo.png" alt="Infinity Logo" width="100px">
+      </a>
+  
+      <!-- Toggler Button -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <!-- Navbar Links -->
+      <div class="collapse navbar-collapse mx-4" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/home"
+              routerLinkActive="active">{{'userNavbar.home' | translate}}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/products"
+              routerLinkActive="active">{{'userNavbar.Products'|translate}}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/categories"
+              routerLinkActive="active">{{'userNavbar.Category'|translate}}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/design"
+              routerLinkActive="active">{{'userNavbar.Design'|translate}}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/aboutus"
+              routerLinkActive="active">{{'userNavbar.AboutUs'|translate}}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/contactus"
+              routerLinkActive="active">{{'userNavbar.ContactUs'|translate}}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/news"
+              routerLinkActive="active">{{'userNavbar.News'|translate}}</a>
+          </li>
+        </ul>
+        
+        <!-- Language Switcher -->
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link btn" (click)="switchLanguage('en')">English</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link btn" (click)="switchLanguage('ar')">العربية</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>

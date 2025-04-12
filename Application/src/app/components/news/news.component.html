@@ -1,0 +1,29 @@
+<div class="container news-container">
+    <h2 class="text-center mb-4">Infinity News</h2>
+
+    @if (loading) {
+    <div class="text-center">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+    } @else {
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        @for (item of news; track item.id) {
+        <div class="col">
+            <div class="card h-100 news-card">
+                <img [src]="item.photo" class="card-img-top news-image" [alt]="item.title">
+                <div class="card-body">
+                    <h5 class="card-title">{{item.title}}</h5>
+                    <p class="card-text truncate-text">{{item.content}}</p>
+                </div>
+                <div class="card-footer bg-transparent">
+                    <a [routerLink]="['/newsDetails', item.id]" class="btn btn-primary">Details</a>
+                    <!-- <small class="text-muted ms-2">Last updated: {{item.lastUpdate | date}}</small> -->
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+    }
+</div>

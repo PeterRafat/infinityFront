@@ -1,0 +1,93 @@
+<!-- add-product.component.html -->
+<div class="container my-4">
+    <h2 class="text-center mb-3">Add Product</h2>
+    <p class="text-center mb-4">Please fill out the form</p>
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <form (ngSubmit)="add()" #productForm="ngForm">
+                <h4 class="mb-4"> Add Product</h4>
+
+                <!--  Name -->
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" name="name"
+                        [(ngModel)]="product.Name" placeholder="Enter your Product Name" required>
+                </div>
+                 <!--  NameAr -->
+                 <div class="mb-3">
+                    <label for="name" class="form-label">NameAr</label>
+                    <input type="text" class="form-control" id="nameAR" name="nameAr"
+                        [(ngModel)]="product.NameAr" placeholder="Enter your Product Name in Arabic" required>
+                </div>
+                <div class="mb-3">
+                    <label for="price" class="form-label">Price</label>
+                    <input type="text" class="form-control" id="price" name="price"
+                        [(ngModel)]="product.Price" placeholder="Enter Product price" required>
+                </div>
+
+                <!-- Description -->
+                <div class="mb-3">
+                    <label for="decription" class="form-label"> Description</label>
+                    <textarea class="form-control" id="decription" name="decription"
+                        [(ngModel)]="product.Description" placeholder="Enter product decription" rows="3"
+                        required></textarea>
+                </div>
+
+                <!--  Category -->
+                <div class="mb-3">
+                    <label for="Category" class="form-label">Category</label>
+                    <select class="form-select" id="Category" name="Category" [(ngModel)]="product.Catid"
+                        required>
+                        <option value="" disabled selected>Select category type</option>
+                        <option *ngFor="let type of categoryList" [value]="type.id">{{ type.name }}</option>
+                    </select>
+                </div>
+
+                <!-- Upload Product Images -->
+                <div class="mb-4">
+                    <label class="form-label">Upload Product Images</label>
+                    <div class="upload-area border rounded p-3 text-center position-relative"
+                        (dragover)="onDragOver($event)" (drop)="onDrop($event)">
+
+                        <input type="file" id="fileUpload" multiple accept="image/*" class="d-none"
+                            (change)="onFileSelected($event)">
+
+                        <div *ngIf="previewUrls.length === 0" class="py-5">
+                            <i class="bi bi-cloud-arrow-up fs-2"></i>
+                            <p class="mt-2 mb-0">Choose files or drop here</p>
+                        </div>
+
+                        <label for="fileUpload" class="btn btn-primary mt-2" *ngIf="previewUrls.length === 0">
+                            Choose files
+                        </label>
+
+                        <div *ngIf="previewUrls.length > 0" class="row mt-3">
+                            <div class="col-md-3 mb-3" *ngFor="let url of previewUrls; let i = index">
+                                <div class="position-relative">
+                                    <img [src]="url" class="img-thumbnail" alt="Uploaded image">
+                                    <button type="button" class="btn btn-sm btn-danger position-absolute top-0 end-0"
+                                        (click)="removeImage(i)">
+                                        <i class="bi bi-x"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-12 mt-2">
+                                <label for="fileUpload" class="btn btn-outline-primary">
+                                    Add more files
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary px-4"
+                        [disabled]="!productForm.form.valid">
+                        Add
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
