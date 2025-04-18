@@ -1,4 +1,4 @@
+// environment.ts (local development)
 export const environment = {
-     // baseurl2:'https://localhost:7284',
-     baseurl2:'http://infinity.runasp.net',
-}
+     baseurl2: 'http://infinity.runasp.net' // Full direct URL
+};
