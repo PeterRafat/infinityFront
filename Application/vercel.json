@@ -3,10 +3,7 @@
     "builds": [
         {
             "src": "dist/infinity/index.html",
-            "use": "@vercel/static",
-            "env": {
-                "NG_APP_BASEURL2": "https://infinity.runasp.net"
-              }
+            "use": "@vercel/static"
         }
     ],
     "rewrites": [
