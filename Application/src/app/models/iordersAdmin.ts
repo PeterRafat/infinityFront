@@ -4,6 +4,8 @@ export interface IorderAdmin{
    productId: number,
    quantity: number,
    date:string,
+   name:string,
+   email:string,
    size:string,
    phone:string,
    address:string,

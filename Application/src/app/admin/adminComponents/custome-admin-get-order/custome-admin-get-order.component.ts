@@ -26,14 +26,17 @@ export class CustomeAdminGetOrderComponent implements OnInit {
 
   private getEmptyOrder(): IcustomeOrderAdmin {
     return {
-      id: 0,
-      name: '',
-      email: '',
-      size: '',
-      address: '',
-      notes: '',
-      photos: []
-    };
+  id: 0,
+  name: '',
+  email: '',
+  phone: '',
+  totalPrice: '',
+  size: '',
+  address: '',
+  notes: '',
+  date:'',
+  photos: []
+};
   }
 
   getCustomOrders() {

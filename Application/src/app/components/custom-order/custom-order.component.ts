@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { IcustomeOrder } from '../../models/icustomeOrder';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
+import { CustomTotalPriceService } from '../../services/custome-total-price.service';
 
 @Component({
   selector: 'app-custom-order',
@@ -43,12 +44,34 @@ export class CustomOrderComponent implements OnInit {
   constructor(
     private orderService: OrderServiceService,
     private router: Router,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private totalPriceService:CustomTotalPriceService
   ) {
     this.translate.setDefaultLang('en'); // Set default language
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.totalPriceService.currentTotalPrice.subscribe(price => {
+      this.orderData.price = price;
+      this.calculateTotalPrice();
+    });
+  }
+  // Add this method
+  calculateTotalPrice(): void {
+    // Calculate total quantity
+    const totalQuantity = 
+      this.orderData.smallQuantity + 
+      this.orderData.mediumQuantity + 
+      this.orderData.largeQuantity + 
+      this.orderData.xlQuantity + 
+      this.orderData.xllQuantity;
+  
+    // Calculate total price (price per shirt * total quantity)
+    this.orderData.totalPrice = this.orderData.price * totalQuantity;
+    
+    // Update the Quantity field (if needed)
+    this.orderData.Quantity = totalQuantity;
+  }
 
   // Handle file selection
   onFileSelected(event: any): void {
@@ -101,6 +124,8 @@ export class CustomOrderComponent implements OnInit {
     formData.append('Size', sizeDetails);
     formData.append('Notes', this.orderData.Notes);
     formData.append('Address', this.orderData.Address);
+    formData.append('Phone', this.orderData.Phone);
+    formData.append('TotalPrice', this.orderData.totalPrice.toString());
 
     this.orderData.Photo.forEach((file) => {
       formData.append('Photos', file);

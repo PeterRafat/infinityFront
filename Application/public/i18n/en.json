@@ -131,7 +131,9 @@
       "ADDRESS": "Address",
       "NOTES": "Message",
       "PHOTOS": "Upload Photos For Custom Design",
-      "SUBMIT_BUTTON": "Order Now"
+      "SUBMIT_BUTTON": "Order Now",
+      "UNIT_PRICE": "Unit Price",
+      "TOTAL_PRICE": "Total Price"
     },
     "ERRORS": {
       "REQUIRED": "This field is required.",

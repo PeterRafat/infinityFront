@@ -131,7 +131,9 @@
             "ADDRESS": "العنوان",
             "NOTES": "الرسالة",
             "PHOTOS": "تحميل صور للتصميم المخصص",
-            "SUBMIT_BUTTON": "اطلب الآن"
+            "SUBMIT_BUTTON": "اطلب الآن",
+            "UNIT_PRICE": "سعر القطعة",
+            "TOTAL_PRICE": "السعر الإجمالي"
         },
         "ERRORS": {
             "REQUIRED": "هذا الحقل مطلوب.",

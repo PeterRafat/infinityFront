@@ -7,7 +7,7 @@ export interface IproductById {
     description: string,
     categoryName: string
 }
-export interface ProductApiResponse{
+export interface ProductApiResponse {
     statusCode: number;
     meta: any;
     succeeded: boolean;

@@ -1,16 +1,48 @@
-/* Base styles */
+/* Base alert style */
 .alert-info {
-    text-align: center;
-    padding: 20px;
-    margin-top: 20px;
-    border: 1px solid #bce8f1;
-    background-color: #d9edf7;
-    color: #684dab;
-    border-radius: 4px;
+  text-align: center;
+  padding: 20px;
+  margin-top: 20px;
+  border: 1px solid #bce8f1;
+  background-color: #d9edf7;
+  color: #684dab;
+  border-radius: 4px;
 }
 
 .cursor-pointer {
   cursor: pointer;
+}
+.action-btn1{
+  background-color: #d81111;
+  color: white;
+}
+.action-btn1:hover{
+  background-color: #d8111171;
+}
+.action-btn2{
+  background-color: blueviolet;
+  color: white;
+}
+.action-btn2:hover{
+  background-color: rgba(137, 43, 226, 0.488);
+  color: white;
+}
+/* Buttons: Make View & Delete more prominent */
+.btn-admin-action {
+  padding: 0.75rem 1.25rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  border-radius: 8px;
+}
+
+.btn-admin-action i {
+  margin-right: 0.5rem;
+  font-size: 1.2rem;
+}
+.EGP{
+  color: green;
+  font-size: 1.2rem;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 /* Photo modal styles */
@@ -40,12 +72,14 @@
 .photo-thumbnail {
   transition: all 0.3s ease;
   position: relative;
+  height: 150px;
+  object-fit: cover;
 }
 
 .photo-thumbnail:hover {
   transform: scale(1.03);
   z-index: 1;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
 
 /* Navigation buttons */
@@ -69,7 +103,7 @@
   font-size: 1.5rem;
 }
 
-/* Download button styles */
+/* Download button style */
 .btn-download-all {
   transition: all 0.3s ease;
 }
@@ -86,15 +120,20 @@
 /* Responsive adjustments */
 @media (max-width: 768px) {
   #photoModal .modal-dialog {
-    max-width: 95%;
+      max-width: 95%;
   }
-  
+
   #photoModal .btn-primary {
-    width: 40px;
-    height: 40px;
+      width: 40px;
+      height: 40px;
   }
-  
+
   .photo-thumbnail {
-    height: 120px !important;
+      height: 120px !important;
+  }
+
+  .btn-admin-action {
+      font-size: 1rem;
+      padding: 0.5rem 1rem;
   }
 }

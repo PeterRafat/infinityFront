@@ -1,10 +1,11 @@
 import { Component, ElementRef, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import Konva from 'konva';
 import { TranslateService, TranslateModule, TranslatePipe } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { CustomTotalPriceService } from '../../services/custome-total-price.service';
 
 enum ShirtType {
   TShirt = 'tshirt',
@@ -54,7 +55,7 @@ interface ShirtDesign {
 
 @Component({
   selector: 'app-design',
-  imports: [FormsModule, RouterLink, TranslateModule, TranslatePipe, CommonModule],
+  imports: [FormsModule, TranslateModule, TranslatePipe, CommonModule],
   templateUrl: './design.component.html',
   styleUrls: ['./design.component.css'],
 })
@@ -204,7 +205,7 @@ export class DesignComponent implements OnInit, OnDestroy {
   currentLanguage: string = 'en';
   private langChangeSubscription!: Subscription;
 
-  constructor(private translate: TranslateService) {
+  constructor(private translate: TranslateService,private router:Router, private totalPriceService:CustomTotalPriceService) {
     this.currentLanguage = this.translate.currentLang || 'en';
   }
 
@@ -919,5 +920,10 @@ export class DesignComponent implements OnInit, OnDestroy {
     link.download = filename;
     link.href = dataURL;
     link.click();
+  }
+  onOrderClick() {
+    const totalPrice = this.designs[this.currentShirtType].priceBreakdown.total;
+    this.totalPriceService.changeTotalPrice(totalPrice);
+    this.router.navigate(['/customeOrder']);
   }
 }

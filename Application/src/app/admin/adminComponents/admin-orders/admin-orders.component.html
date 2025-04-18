@@ -1,9 +1,10 @@
-<div class="card shadow-lg border-0">
+<div class="card shadow-lg border-0 mb-4">
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table-hover table-striped align-middle">
                 <thead class="table-dark">
                     <tr>
+                        <th>#</th>  <!-- Added this column for numbering -->
                         <th>Date</th>
                         <th>Total Quantity</th>
                         <th>Total Price</th>
@@ -11,17 +12,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @for (order of orders; track $index) {
+                    @for (order of orders; track $index ) {
                     <tr>
-                        <td>{{ order.date | date:"medium" }}</td>
+                        <td>{{ $index + 1 }}</td>  <!-- Display row number starting from 1 -->
+                        <td>{{ order.date | date: 'medium' }}</td>
                         <td>{{ order.quantity }}</td>
                         <td><span class="fw-bold text-success">{{ order.totalPrice }} EGP</span></td>
                         <td class="text-center">
-                            <div class="btn-group gap-1">
-                                <button class="btn btn-danger btn-sm rounded" (click)="deleteOrder(order.id)">
+                            <div class="btn-group gap-2">
+                                <button class="btn btn-danger btn-admin-action" (click)="deleteOrder(order.id)">
                                     <i class="bi bi-trash"></i> Delete
                                 </button>
-                                <button type="button" class="btn btn-primary btn-sm rounded" data-bs-toggle="modal"
+                                <button type="button" class="btn btn-primary btn-admin-action" data-bs-toggle="modal"
                                     data-bs-target="#staticBackdrop" (click)="getDetails(order.productId, order)">
                                     <i class="bi bi-eye"></i> View
                                 </button>
@@ -38,22 +40,31 @@
     </div>
 </div>
 
-<!-- Modal -->
+<!-- Order Details Modal -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content shadow-lg border-0">
             <div class="modal-header bg-primary text-white">
-                <h5 class="modal-title" id="staticBackdropLabel">{{ details.name }}</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title" id="staticBackdropLabel">{{ details.name || 'Order Details' }}</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="text-center mb-3">
-                    <img [src]="details.photos[0]" class="rounded img-fluid shadow-sm" style="max-width: 180px;"
+                    <img [src]="details.photos[0]" class="rounded img-fluid shadow-sm" style="max-width: 200px;"
                         alt="{{ details.name }}">
                 </div>
                 <table class="table table-bordered">
                     <tbody>
+                        <tr>
+                            <th class="bg-light" style="width: 30%;">Name</th>
+                            <td>{{ selectedOrder?.name }}</td>
+                        </tr>
+                        <tr>
+                            <th class="bg-light">Email</th>
+                            <td>{{ selectedOrder?.email }}</td>
+                        </tr>
                         <tr>
                             <th class="bg-light">Price</th>
                             <td><span class="fw-bold text-success">{{ details.price }} EGP</span></td>
@@ -64,7 +75,8 @@
                         </tr>
                         <tr>
                             <th class="bg-light">Phone</th>
-                            <td><a href="tel:{{ selectedOrder?.phone }}" class="text-decoration-none">{{ selectedOrder?.phone }}</a></td>
+                            <td><a [href]="'tel:' + selectedOrder?.phone" class="text-decoration-none">{{
+                                    selectedOrder?.phone }}</a></td>
                         </tr>
                         <tr>
                             <th class="bg-light">Address</th>
@@ -72,7 +84,7 @@
                         </tr>
                         <tr>
                             <th class="bg-light">Notes</th>
-                            <td>{{ selectedOrder?.notes }}</td>
+                            <td>{{ selectedOrder?.notes || 'No notes provided' }}</td>
                         </tr>
                     </tbody>
                 </table>

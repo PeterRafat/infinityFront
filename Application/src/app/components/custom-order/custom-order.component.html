@@ -23,6 +23,20 @@
             <div class="col-12 col-md-6 bg-light p-4 border rounded">
                 <form action="#!" #sendOrder="ngForm" (ngSubmit)="order()">
                     <div class="row gy-4">
+                        <!-- Add these fields somewhere in your form -->
+                        <div class="col-12 col-md-6">
+                            <label for="unitPrice" class="form-label">{{ 'CUSTOM_ORDER.FORM.UNIT_PRICE' | translate
+                                }}</label>
+                            <input type="number" class="form-control" id="unitPrice" name="unitPrice"
+                                [(ngModel)]="orderData.price" disabled>
+                        </div>
+
+                        <div class="col-12 col-md-6">
+                            <label for="totalPrice" class="form-label">{{ 'CUSTOM_ORDER.FORM.TOTAL_PRICE' | translate
+                                }}</label>
+                            <input type="number" class="form-control" id="totalPrice" name="totalPrice"
+                                [(ngModel)]="orderData.totalPrice" disabled>
+                        </div>
                         <!-- Name Field -->
                         <div class="col-12 col-md-7">
                             <label for="name" class="form-label">{{ 'CUSTOM_ORDER.FORM.NAME' | translate }} <span
@@ -38,6 +52,14 @@
                             <input type="email" class="form-control" id="email" name="email"
                                 [(ngModel)]="orderData.Email" required>
                         </div>
+                        <!-- Phone Field -->
+                        <div class="col-12 col-md-7">
+                            <label for="phone" class="form-label">
+                                {{ 'CUSTOM_ORDER.FORM.PHONE' | translate }} <span class="text-danger">*</span>
+                            </label>
+                            <input type="tel" class="form-control" id="phone" name="phone"
+                                [(ngModel)]="orderData.Phone" required>
+                        </div>
 
                         <!-- Size and Quantity Fields -->
                         <div class="col-12 col-md-6">
@@ -52,35 +74,35 @@
                                 <input type="text" class="form-control inputSize" id="size" name="size"
                                     [(ngModel)]="orderData.smallSize" required disabled>
                                 <input type="number" class="form-control" id="smallQuantity" name="smallQuantity"
-                                    [(ngModel)]="orderData.smallQuantity" required>
+                                    [(ngModel)]="orderData.smallQuantity" required (change)="calculateTotalPrice()">
                             </div>
                             <!-- Medium Size -->
                             <div class="d-flex gap-2 mb-2">
                                 <input type="text" class="form-control inputSize" id="medium" name="medium"
                                     [(ngModel)]="orderData.mediumSize" required disabled>
                                 <input type="number" class="form-control" id="mediumQuantity" name="mediumQuantity"
-                                    [(ngModel)]="orderData.mediumQuantity" required>
+                                    [(ngModel)]="orderData.mediumQuantity" required (change)="calculateTotalPrice()">
                             </div>
                             <!-- Large Size -->
                             <div class="d-flex gap-2 mb-2">
                                 <input type="text" class="form-control inputSize" id="large" name="large"
                                     [(ngModel)]="orderData.largeSize" required disabled>
                                 <input type="number" class="form-control" id="largeQuantity" name="largeQuantity"
-                                    [(ngModel)]="orderData.largeQuantity" required>
+                                    [(ngModel)]="orderData.largeQuantity" required (change)="calculateTotalPrice()">
                             </div>
                             <!-- XL Size -->
                             <div class="d-flex gap-2 mb-2">
                                 <input type="text" class="form-control inputSize" id="xl" name="xl"
                                     [(ngModel)]="orderData.xlSize" required disabled>
                                 <input type="number" class="form-control" id="xlQuantity" name="xlQuantity"
-                                    [(ngModel)]="orderData.xlQuantity" required>
+                                    [(ngModel)]="orderData.xlQuantity" required (change)="calculateTotalPrice()">
                             </div>
                             <!-- XXL Size -->
                             <div class="d-flex gap-2 mb-2">
                                 <input type="text" class="form-control inputSize" id="xxl" name="xxl"
                                     [(ngModel)]="orderData.xxlSize" required disabled>
                                 <input type="number" class="form-control" id="xllQuantity" name="xllQuantity"
-                                    [(ngModel)]="orderData.xllQuantity" required>
+                                    [(ngModel)]="orderData.xllQuantity" required (change)="calculateTotalPrice()">
                             </div>
                         </div>
                         <!-- Address -->
